@@ -34,6 +34,10 @@ public:
     {
         return end;
     }
+    void propagate(double output)
+    {
+        getStart()->addInputfromlinks(output * getWeightval());
+    }
 };
 
 Links::~Links()
@@ -125,6 +129,13 @@ public:
             x->changeWeight(weights[cnt++]);
         }
     }
+    void trigger()
+    {
+        for (Links *x : out)
+        {
+            x->propagate(getOutput());
+        }
+    }
 };
 
 Neuron::~Neuron()
@@ -147,8 +158,18 @@ public:
         this->layer_id = layer_id;
         this->network = network;
         this->properties = properties;
+
+        initLayer();
     }
     ~Layer();
+    void initLayer()
+    {
+        neuron.clear();
+        for (int i = 0; i < properties["size"]; i++)
+        {
+            neuron.push_back(new Neuron(i + 1, this, properties["has_bias"]));
+        }
+    }
     int getLayerID()
     {
         return layer_id;
@@ -191,6 +212,38 @@ public:
         {
             x->changeWeights(weights[cnt++]);
         }
+    }
+    void trigger()
+    {
+        for (Neuron *x : neuron)
+        {
+            x->trigger();
+        }
+    }
+    void getConnections(Layer *next)
+    {
+        for (Neuron *x : neuron)
+        {
+            for (Neuron *y : next->neuron)
+            {
+                if (!y->getBias())
+                    x->addOutLink(y);
+            }
+        }
+    }
+    vector<double> getOutput()
+    {
+        vector<double> m;
+        m.reserve(neuron.size());
+        for (Neuron *x : neuron)
+        {
+            m.push_back(x->getOutput());
+        }
+        return m;
+    }
+    vector<Neuron *> getNeurons()
+    {
+        return neuron;
     }
 };
 Layer::~Layer()
