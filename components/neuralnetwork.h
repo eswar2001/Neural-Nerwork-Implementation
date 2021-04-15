@@ -1,5 +1,12 @@
+#ifndef NEURALNETWORKS_H
+#define NEURALNETWORKS_H
+
 #include <bits/stdc++.h>
 #include "./Layers.h"
+
+class NeuralNetwork;
+class Neuron;
+class Layer;
 using namespace std;
 
 /*NeuralNetwork Class begins*/
@@ -7,7 +14,6 @@ class NeuralNetwork
 {
 public:
     vector<Layer *> layers;
-
     NeuralNetwork();
     ~NeuralNetwork();
     void addLayer(map<string, double> properties)
@@ -29,3 +35,4 @@ NeuralNetwork::~NeuralNetwork()
 }
 
 /*NeuralNetwork Class ends*/
+#endif

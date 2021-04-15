@@ -1,9 +1,16 @@
+#ifndef LAYERS_H
+#define LAYERS_H
+
 #include <bits/stdc++.h>
-#include "./neuralnetwork.h"
 #include "./Neuron.h"
+class NeuralNetwork;
+class Neuron;
+class Layer;
+
 using namespace std;
 
 /*Layer Class begins*/
+
 class Layer
 {
 public:
@@ -43,10 +50,10 @@ public:
     vector<vector<Links *>> getLinks()
     {
         vector<vector<Links *>> w;
-        w.reserve(neuron.size());
+        // w.reserve(neuron.size());
         for (Neuron *x : neuron)
         {
-            w.push_back(x->getLinks());
+            w.emplace_back(x->getLinks());
         }
         return w;
     }
@@ -56,7 +63,7 @@ public:
         w.reserve(neuron.size());
         for (Neuron *x : neuron)
         {
-            w.push_back(x->getWeights());
+            w.emplace_back(x->getWeights());
         }
         return w;
     }
@@ -110,3 +117,4 @@ Layer::~Layer()
 }
 
 /*Layer Class ends*/
+#endif

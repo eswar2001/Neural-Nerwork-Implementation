@@ -1,5 +1,13 @@
+#ifndef NEURON_H
+#define NEURON_H
+
 #include <bits/stdc++.h>
 #include "Layers.h"
+#include "Links.h"
+
+class NeuralNetwork;
+class Neuron;
+class Layer;
 using namespace std;
 
 /*Neuron Class begins*/
@@ -65,7 +73,7 @@ public:
     }
     vector<Links *> getLinks()
     {
-        return out;
+        return move(out);
     }
     vector<double *> getWeights()
     {
@@ -75,7 +83,7 @@ public:
         {
             w.push_back(out[i]->getWeight());
         }
-        return move(w);
+        return w;
     }
     void changeWeights(vector<double> &weights)
     {
@@ -99,3 +107,4 @@ Neuron::~Neuron()
 }
 
 /*Neuron Class ends*/
+#endif

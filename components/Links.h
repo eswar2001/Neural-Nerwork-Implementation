@@ -1,4 +1,13 @@
+#ifndef LINKS_H
+#define LINKS_H
+
 #include <bits/stdc++.h>
+#include "./Neuron.h"
+
+class NeuralNetwork;
+class Neuron;
+class Layer;
+
 using namespace std;
 
 /*Links Class begins*/
@@ -45,3 +54,4 @@ Links::~Links()
 }
 
 /*Links Class ends*/
+#endif
