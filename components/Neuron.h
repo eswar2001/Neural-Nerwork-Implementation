@@ -6,8 +6,9 @@
 #include "Links.h"
 
 class NeuralNetwork;
-class Neuron;
 class Layer;
+
+class Neuron;
 using namespace std;
 
 /*Neuron Class begins*/

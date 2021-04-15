@@ -2,7 +2,7 @@
 #define LAYERS_H
 
 #include <bits/stdc++.h>
-#include "./Neuron.h"
+#include "Neuron.h"
 class NeuralNetwork;
 class Neuron;
 class Layer;
