@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
-#include "./neuralnetwork.cpp"
-#include "./Neuron.cpp"
+#include "./neuralnetwork.h"
+#include "./Neuron.h"
 using namespace std;
 
 /*Layer Class begins*/
